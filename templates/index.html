@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Audio Spectrogram</title>
+</head>
+<body>
+	<h1>Upload an audio file to visualize its spectrogram</h1>
+	<form method="POST" action="{{ url_for('upload') }}" enctype="multipart/form-data">
+		<label for="file">Choose a file:</label>
+		<input type="file" id="file" name="file"><br><br>
+		<input type="submit" value="Upload">
+	</form>
+</body>
+</html>
