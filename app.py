@@ -7,6 +7,15 @@ from flask import Flask, render_template, request, send_file
 app = Flask(__name__)
 
 def process_audio(filename):
+    """Processes an audio file by computing its short-time Fourier transform (STFT), 
+    generating a magnitude spectrogram plot, and saving the plot to a memory buffer.
+    
+    Args:
+    filename (str): A string representing the path to the audio file to be processed.
+    
+    Returns:
+    A memory buffer containing the PNG image of the magnitude spectrogram plot.
+    """
     # Load the audio file
     y, sr = librosa.load(filename)
 
@@ -33,10 +42,12 @@ def process_audio(filename):
 
 @app.route('/')
 def index():
+    """Renders the index.html page."""
     return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    """Processes the uploaded audio file and returns the magnitude spectrogram plot."""
     if request.method == 'POST':
         f = request.files['file']
         f.save(f.filename)
